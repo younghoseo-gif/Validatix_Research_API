@@ -1,9 +1,13 @@
 require('dotenv').config();
 const express = require('express');
+const cors = require('cors'); // [추가됨] CORS 모듈 불러오기
 const axios = require('axios');
 const { GoogleGenerativeAI } = require('@google/generative-ai');
 
 const app = express();
+
+// [추가됨] 모든 외부 도메인의 접근을 허용하도록 보안 개방
+app.use(cors()); 
 app.use(express.json());
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
